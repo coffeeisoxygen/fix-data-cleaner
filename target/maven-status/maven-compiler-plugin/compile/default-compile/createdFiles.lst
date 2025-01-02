@@ -1,12 +1,9 @@
 com\coffeecode\parser\csv\CSVLibrary.class
 com\coffeecode\parser\csv\config\CSVConfig$Builder.class
-com\coffeecode\parser\Parser.class
 com\coffeecode\parser\csv\OpenCSVLibrary.class
 com\coffeecode\logger\GeneralLogging.class
 com\coffeecode\exception\ErrorCode.class
 com\coffeecode\parser\ParserType.class
-com\coffeecode\parser\DataParser.class
-com\coffeecode\parser\AbstractParser.class
 com\coffeecode\logger\AbstractLogging$1.class
 com\coffeecode\logger\TechnicalLogging.class
 com\coffeecode\logger\LogLevel.class

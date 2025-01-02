@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: com.coffeecode.parser.csv.CSVParserTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.921 s <<< FAILURE! -- in com.coffeecode.parser.csv.CSVParserTest
+com.coffeecode.parser.csv.CSVParserTest.testParseWithValidHeader -- Time elapsed: 0.015 s <<< ERROR!
+com.coffeecode.exception.CustomException: Invalid CSV file
+	at com.coffeecode.parser.csv.CSVParser.validateFile(CSVParser.java:47)
+	at com.coffeecode.parser.csv.CSVParser.parse(CSVParser.java:33)
+	at com.coffeecode.parser.csv.CSVParserTest.testParseWithValidHeader(CSVParserTest.java:49)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

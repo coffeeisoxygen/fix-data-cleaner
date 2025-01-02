@@ -52,23 +52,37 @@ public class CSVParser implements FileParser {
     private void processFileContent() throws CustomException {
         List<String> line;
         boolean headerFound = false;
+        int lineCount = 0;
 
+        logger.info("Starting to process file: " + path.getFileName());
+        
+        // Process until header
         while ((line = csvLibrary.readNext()) != null && !headerFound) {
+            lineCount++;
             if (!csvLibrary.isBlankLine(line)) {
                 if (csvLibrary.isHeaderLine(line)) {
                     headerFound = true;
                     container.setHeaders(line);
+                    logger.info("Header found at line: " + lineCount);
                 } else {
                     container.addMetadata(line);
                 }
             }
         }
 
+        if (!headerFound) {
+            throw new CustomException("No header found in file", ERROR_PARSE);
+        }
+
+        // Process content
         while ((line = csvLibrary.readNext()) != null) {
+            lineCount++;
             if (!csvLibrary.isBlankLine(line)) {
                 container.addContent(line);
             }
         }
+
+        logger.info("File processing completed. Total lines: " + lineCount);
     }
 
     @Override

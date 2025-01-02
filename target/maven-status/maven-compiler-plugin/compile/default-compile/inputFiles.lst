@@ -9,11 +9,9 @@ E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\logger
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\logger\TechnicalLogging.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\model\DataContainer.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\model\DataModel.java
-E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\AbstractParser.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\csv\config\CSVConfig.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\csv\CSVLibrary.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\csv\CSVParser.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\csv\OpenCSVLibrary.java
-E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\DataParser.java
-E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\Parser.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\FileParser.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\ParserType.java
