@@ -1,4 +1,4 @@
-@startuml
+@startuml FileProcessor
 interface FileProcessor {
     +validateFileType()
     +findActualHeader()
