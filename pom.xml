@@ -69,13 +69,7 @@
       <artifactId>disruptor</artifactId>
       <version>${disruptor.version}</version>
     </dependency>
-    
-    <!-- Log4j2 Async Support -->
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core-async</artifactId>
-      <version>${log4j.async.version}</version>
-    </dependency>
+
   </dependencies>
 
   <build>

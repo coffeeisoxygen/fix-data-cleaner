@@ -19,7 +19,7 @@ public class App {
         logger.error("Error Message!");
 
         // Test async logging with loop
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             logger.info("Async logging test message #{}", i);
         }
     }
