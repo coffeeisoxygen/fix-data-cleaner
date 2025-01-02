@@ -18,12 +18,12 @@
 
     <!-- Dependencies Version -->
     <junit.jupiter.version>5.10.1</junit.jupiter.version>
-    <slf4j.version>2.0.11</slf4j.version>
+    <slf4j.version>2.0.9</slf4j.version>
     <log4j.version>2.22.1</log4j.version>
     <disruptor.version>3.4.4</disruptor.version>
     <log4j.async.version>2.22.1</log4j.async.version>
     <opencsv.version>5.9</opencsv.version>
-    <mockito.version>3.12.4</mockito.version>
+    <mockito-core.version>3.12.4</mockito-core.version>
 
     <!-- Plugin Versions -->
     <maven.clean.version>3.4.0</maven.clean.version>
@@ -41,11 +41,14 @@
 
   <dependencies>
 
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito-core.version}</version>
+      <scope>test</scope>
     </dependency>
+
 
 
     <dependency>
