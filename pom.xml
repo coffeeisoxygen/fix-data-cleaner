@@ -22,6 +22,7 @@
     <log4j.version>2.22.1</log4j.version>
     <disruptor.version>3.4.4</disruptor.version>
     <log4j.async.version>2.22.1</log4j.async.version>
+    <opencsv.version>5.9</opencsv.version>
 
     <!-- Plugin Versions -->
     <maven.clean.version>3.4.0</maven.clean.version>
@@ -68,6 +69,13 @@
       <groupId>com.lmax</groupId>
       <artifactId>disruptor</artifactId>
       <version>${disruptor.version}</version>
+    </dependency>
+
+    <!-- open csv  -->
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>${opencsv.version}</version>
     </dependency>
 
   </dependencies>
