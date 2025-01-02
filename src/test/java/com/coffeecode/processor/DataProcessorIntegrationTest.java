@@ -2,7 +2,11 @@ package com.coffeecode.processor;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,18 +46,24 @@ class DataProcessorIntegrationTest {
 
     @Test
     void testProcessAllFiles() throws CustomException {
-        String[] files = {
-            "1336_transfer_30_dec_24.csv",
-            "1336_komisi_30_dec_24.csv",
-            "1336_transaksi_30_dec_24.csv"
-        };
+        // Test file metadata
+        Map<String, String> fileExpectations = Map.of(
+            "1336_transfer_30_dec_24.csv", "Transfer Balance Report",
+            "1336_komisi_30_dec_24.csv", "Commission and Incentive Details Report",
+            "1336_transaksi_30_dec_24.csv", "Transaction Detail Report"
+        );
 
-        for (String file : files) {
-            Path path = Paths.get(BASE_PATH, file);
+        for (Map.Entry<String, String> entry : fileExpectations.entrySet()) {
+            Path path = Paths.get(BASE_PATH, entry.getKey());
             processor.process(path);
-            assertNotNull(processor.getResult(), "Result should not be null for " + file);
-            assertTrue(processor.getResult().getHeaders().contains("DateTime"), 
-                "DateTime header missing in " + file);
+            
+            assertAll("File: " + entry.getKey(),
+                () -> assertNotNull(processor.getResult()),
+                () -> assertTrue(processor.getResult().getHeaders().contains("DateTime")),
+                () -> assertFalse(processor.getResult().getContent().isEmpty()),
+                () -> assertEquals(entry.getValue(), 
+                    processor.getResult().getMetadata().get(0).get(0).replace("\"", ""))
+            );
         }
     }
 }
