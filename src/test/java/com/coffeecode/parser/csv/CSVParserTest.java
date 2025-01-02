@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ class CSVParserTest {
     private File testFile;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws CustomException {
         MockitoAnnotations.openMocks(this);
         config = new CSVConfig.Builder().build();
         parser = new CSVParser(csvLibrary, config);
@@ -40,6 +41,7 @@ class CSVParserTest {
         testFile = mock(File.class);
         when(testFile.exists()).thenReturn(true);
         when(testFile.getName()).thenReturn("test.csv");
+        when(testFile.canRead()).thenReturn(true);
         parser.setFile(testFile);
     }
 
@@ -85,5 +87,31 @@ class CSVParserTest {
         
         assertEquals("Failed to parse CSV content", thrown.getMessage());
         assertEquals(mockError, thrown.getCause());
+    }
+
+    @Test
+    void testInvalidFile() {
+        when(testFile.exists()).thenReturn(false);
+        assertFalse(parser.isValid());
+    }
+
+    @Test
+    void testNullContainer() {
+        assertThrows(CustomException.class, () -> parser.parse(null));
+    }
+
+    @Test
+    void testReadError() throws CustomException {
+        when(csvLibrary.readNext()).thenThrow(new CustomException("Read error"));
+        assertThrows(CustomException.class, () -> parser.parse(container));
+        verify(csvLibrary).close();
+    }
+
+    @Test
+    void testInitializeError() throws CustomException {
+        doThrow(new CustomException("Init error")).when(csvLibrary).initialize(any(), any());
+        CustomException ex = assertThrows(CustomException.class, () -> parser.parse(container));
+        assertEquals("Init error", ex.getMessage());
+        verify(csvLibrary).close();
     }
 }

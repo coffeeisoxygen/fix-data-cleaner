@@ -19,6 +19,7 @@ public class CSVParser extends AbstractParser {
     private File file;
 
     public CSVParser(CSVLibrary csvLibrary, CSVConfig config) {
+        super();
         this.csvLibrary = csvLibrary;
         this.config = config;
     }
@@ -40,7 +41,11 @@ public class CSVParser extends AbstractParser {
                 container.addRow(row);
             }
         } catch (CustomException e) {
-            throw new CustomException(e.getMessage(), ERROR_PARSE, e);
+            logger.error("Failed to parse CSV file", e);
+            throw new CustomException("Failed to parse CSV content", ERROR_PARSE, e);
+        } catch (Exception e) {
+            logger.error("Unexpected error during CSV parsing", e);
+            throw new CustomException("Failed to parse CSV content", ERROR_PARSE, e);
         } finally {
             csvLibrary.close();
         }
@@ -50,6 +55,7 @@ public class CSVParser extends AbstractParser {
         if (!isValid()) {
             throw new CustomException("Invalid CSV file", ERROR_FILE);
         }
+        logger.info("CSV file validated successfully: " + file.getName());
     }
 
     @Override
@@ -65,7 +71,11 @@ public class CSVParser extends AbstractParser {
         return ParserType.CSV;
     }
 
-    public void setFile(File file) {
+    public void setFile(File file) throws CustomException {
+        if (file == null) {
+            throw new CustomException("File cannot be null", ERROR_FILE);
+        }
         this.file = file;
+        logger.info("File set: " + file.getName());
     }
 }
