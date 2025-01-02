@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="APP_LOG_ROOT">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- Application Log File -->
+        <RollingFile name="FileAppender" fileName="${APP_LOG_ROOT}/application.log" filePattern="${APP_LOG_ROOT}/application-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!-- Error Log File -->
+        <RollingFile name="ErrorFile" fileName="${APP_LOG_ROOT}/error.log" filePattern="${APP_LOG_ROOT}/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+
+        <!-- Async Appenders -->
+        <Async name="AsyncConsole" bufferSize="262144">
+            <AppenderRef ref="Console"/>
+        </Async>
+        <Async name="AsyncFile" bufferSize="262144">
+            <AppenderRef ref="FileAppender"/>
+        </Async>
+        <Async name="AsyncError" bufferSize="262144">
+            <AppenderRef ref="ErrorFile"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <!-- Framework Loggers -->
+        <Logger name="org.apache" level="WARN"/>
+        <Logger name="org.springframework" level="WARN"/>
+
+        <!-- Application Loggers -->
+        <Logger name="com.coffeecode" level="DEBUG" additivity="false">
+            <AppenderRef ref="AsyncConsole"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Logger>
+
+        <!-- Error Logger -->
+        <Logger name="com.coffeecode.error" level="ERROR" additivity="false">
+            <AppenderRef ref="AsyncError"/>
+        </Logger>
+
+        <!-- Root Logger -->
+        <Root level="INFO">
+            <AppenderRef ref="AsyncConsole"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
