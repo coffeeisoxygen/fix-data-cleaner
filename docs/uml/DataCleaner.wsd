@@ -1,0 +1,69 @@
+@startuml DataCleaner
+
+' File Processing
+interface FileProcessor {
+    +validateFile(File): boolean
+    +readFile(): void
+    +getIterator(): Iterator<Row>
+}
+
+class CSVProcessor implements FileProcessor {
+    -csvParser: CSVParser
+}
+
+class ExcelProcessor implements FileProcessor {
+    -workbook: Workbook
+}
+
+' Data Structure
+class DataContainer {
+    -rawData: List<List<String>>
+    -metadata: List<List<String>>
+    -headers: List<String>
+    -content: List<List<String>>
+    +addRawData(row: List<String>)
+    +setMetadata(start: int, end: int)
+    +setHeader(row: int)
+    +setContent(start: int, end: int)
+}
+
+' Data Processing
+class DataCleaner {
+    -firstDataPosition: Position
+    +findFirstData(data: List<List<String>>): Position
+    +removeEmptyColumns(data: List<List<String>>)
+    +removeEmptyRows(data: List<List<String>>)
+}
+
+class Position {
+    +row: int
+    +column: int
+}
+
+' User Interface
+class DataSelector {
+    +displayData(data: List<List<String>>)
+    +handleSelection(selection: Selection)
+}
+
+enum SelectionType {
+    METADATA
+    HEADER
+    CONTENT
+}
+
+class Selection {
+    +type: SelectionType
+    +startRow: int
+    +endRow: int
+}
+
+' Relationships
+FileProcessor --> DataContainer
+DataContainer --> DataCleaner
+DataCleaner --> Position
+DataContainer --> DataSelector
+DataSelector --> Selection
+Selection --> SelectionType
+
+@enduml

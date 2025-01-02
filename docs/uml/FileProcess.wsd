@@ -1,55 +1,35 @@
-@startuml File Processing Flow
-
+@startuml
 interface FileProcessor {
-    +validate()
-    +readHeader()
-    +processData()
-    +transform()
-    +normalize()
+    +validateFileType()
+    +findActualHeader()
+    +skipMetadataRows()
+    +processDataRows()
+    +transformData()
 }
 
-abstract class AbstractFileProcessor {
-    #findHeader()
-    #preCleanData()
-    #validateRow()
-    #clearEmptyRows()
+abstract class AbstractFileHandler {
+    #detectHeaderRow()
+    #cleanEmptyRows()
+    #validateDataFormat()
+    #parseMetadata()
 }
 
-class CSVProcessor extends AbstractFileProcessor implements FileProcessor {
-    -csvReader
-    +validate()
-    +readHeader()
-    +processData()
+class CSVHandler extends AbstractFileHandler {
+    -csvParser
+    +readCSV()
 }
 
-class ExcelProcessor extends AbstractFileProcessor implements FileProcessor {
+class ExcelHandler extends AbstractFileHandler {
     -excelReader
-    +validate()
-    +readHeader()
-    +processData()
+    +readExcel()
 }
 
-class DataProcessor {
-    +transform()
+class DataTransformer {
     +normalize()
-    +addSequence()
+    +addSequentialId()
+    +cleanData()
 }
 
-class ValidationResult {
-    -boolean valid
-    -String message
-    -List<String> errors
-}
-
-class ProcessedData {
-    -List<String> headers
-    -List<Row> data
-    -Map<String,String> metadata
-}
-
-CSVProcessor --> DataProcessor
-ExcelProcessor --> DataProcessor
-FileProcessor --> ValidationResult
-FileProcessor --> ProcessedData
-
+CSVHandler --> DataTransformer
+ExcelHandler --> DataTransformer
 @enduml
