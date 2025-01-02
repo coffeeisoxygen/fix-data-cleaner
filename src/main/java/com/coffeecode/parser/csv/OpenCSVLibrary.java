@@ -36,7 +36,9 @@ public class OpenCSVLibrary implements CSVLibrary {
                     .withCSVParser(new CSVParserBuilder()
                             .withSeparator(config.getSeparator())
                             .withQuoteChar(config.getQuoteChar())
+                            // .withSkipLines(config.getSkipLines())
                             .build())
+                    .withSkipLines(1) // Skip header line
                     .build();
             logger.info("CSV reader initialized successfully");
         } catch (IOException e) {

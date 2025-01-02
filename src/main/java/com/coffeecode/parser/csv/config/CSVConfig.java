@@ -1,6 +1,7 @@
 package com.coffeecode.parser.csv.config;
 
 public class CSVConfig {
+
     private String charset = "UTF-8";
     private char separator = ',';
     private char quoteChar = '"';
@@ -12,6 +13,7 @@ public class CSVConfig {
     }
 
     public static class Builder {
+
         private final CSVConfig config = new CSVConfig();
 
         public Builder charset(String charset) {

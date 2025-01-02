@@ -8,7 +8,6 @@ import com.coffeecode.parser.csv.config.CSVConfig;
 
 public interface CSVLibrary {
 
-
     void initialize(Path path, CSVConfig config) throws CustomException;
 
     List<String> readNext() throws CustomException;
