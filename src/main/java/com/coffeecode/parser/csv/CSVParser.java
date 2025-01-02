@@ -1,6 +1,7 @@
 package com.coffeecode.parser.csv;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.coffeecode.exception.CustomException;
@@ -16,7 +17,7 @@ public class CSVParser extends AbstractParser {
 
     private final CSVLibrary csvLibrary;
     private final CSVConfig config;
-    private File file;
+    private Path path;
 
     public CSVParser(CSVLibrary csvLibrary, CSVConfig config) {
         super();
@@ -35,14 +36,14 @@ public class CSVParser extends AbstractParser {
     protected void parseContent() throws CustomException {
         try {
             validateFile();
-            csvLibrary.initialize(file, config);
+            csvLibrary.initialize(path, config);
             List<String> row;
             while ((row = csvLibrary.readNext()) != null) {
                 container.addRow(row);
             }
         } catch (CustomException e) {
             logger.error("Failed to parse CSV file", e);
-            throw new CustomException("Failed to parse CSV content", ERROR_PARSE, e);
+            throw e;
         } catch (Exception e) {
             logger.error("Unexpected error during CSV parsing", e);
             throw new CustomException("Failed to parse CSV content", ERROR_PARSE, e);
@@ -55,15 +56,15 @@ public class CSVParser extends AbstractParser {
         if (!isValid()) {
             throw new CustomException("Invalid CSV file", ERROR_FILE);
         }
-        logger.info("CSV file validated successfully: " + file.getName());
+        logger.info("CSV file validated successfully: " + path.getFileName());
     }
 
     @Override
     public boolean isValid() {
-        return file != null
-                && file.exists()
-                && file.canRead()
-                && file.getName().toLowerCase().endsWith(".csv");
+        return path != null
+                && Files.exists(path)
+                && Files.isReadable(path)
+                && path.toString().toLowerCase().endsWith(".csv");
     }
 
     @Override
@@ -71,11 +72,11 @@ public class CSVParser extends AbstractParser {
         return ParserType.CSV;
     }
 
-    public void setFile(File file) throws CustomException {
-        if (file == null) {
-            throw new CustomException("File cannot be null", ERROR_FILE);
+    public void setPath(Path path) throws CustomException {
+        if (path == null) {
+            throw new CustomException("Path cannot be null", ERROR_FILE);
         }
-        this.file = file;
-        logger.info("File set: " + file.getName());
+        this.path = path;
+        logger.info("Path set: " + path.getFileName());
     }
 }

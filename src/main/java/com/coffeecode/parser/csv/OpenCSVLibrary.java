@@ -1,9 +1,9 @@
 package com.coffeecode.parser.csv;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +16,7 @@ import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class OpenCSVLibrary implements CSVLibrary {
+
     private static final String ERROR_INIT = "CSV_INIT_ERROR";
     private static final String ERROR_READ = "CSV_READ_ERROR";
     private static final String ERROR_CLOSE = "CSV_CLOSE_ERROR";
@@ -28,10 +29,10 @@ public class OpenCSVLibrary implements CSVLibrary {
     }
 
     @Override
-    public void initialize(File file, CSVConfig config) throws CustomException {
+    public void initialize(Path path, CSVConfig config) throws CustomException {
         try {
             csvReader = new CSVReaderBuilder(
-                    Files.newBufferedReader(file.toPath(), Charset.forName(config.getCharset())))
+                    Files.newBufferedReader(path, Charset.forName(config.getCharset())))
                     .withCSVParser(new CSVParserBuilder()
                             .withSeparator(config.getSeparator())
                             .withQuoteChar(config.getQuoteChar())

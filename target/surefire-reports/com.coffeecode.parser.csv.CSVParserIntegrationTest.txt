@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: com.coffeecode.parser.csv.CSVParserIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 0.822 s <<< FAILURE! -- in com.coffeecode.parser.csv.CSVParserIntegrationTest
+com.coffeecode.parser.csv.CSVParserIntegrationTest.testReadActualFile -- Time elapsed: 0.775 s <<< ERROR!
+com.coffeecode.exception.CustomException: Invalid CSV file
+	at com.coffeecode.parser.csv.CSVParser.validateFile(CSVParser.java:57)
+	at com.coffeecode.parser.csv.CSVParser.parseContent(CSVParser.java:38)
+	at com.coffeecode.parser.AbstractParser.parse(AbstractParser.java:22)
+	at com.coffeecode.parser.csv.CSVParserIntegrationTest.testReadActualFile(CSVParserIntegrationTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+com.coffeecode.parser.csv.CSVParserIntegrationTest.testValidateFile -- Time elapsed: 0.009 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at com.coffeecode.parser.csv.CSVParserIntegrationTest.testValidateFile(CSVParserIntegrationTest.java:80)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
