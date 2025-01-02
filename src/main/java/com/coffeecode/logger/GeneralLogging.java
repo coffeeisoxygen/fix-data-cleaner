@@ -3,10 +3,10 @@ package com.coffeecode.logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Logging {
+public class GeneralLogging {
     private final Logger logger;
 
-    public Logging(Class<?> clazz) {
+    public GeneralLogging(Class<?> clazz) {
         this.logger = LoggerFactory.getLogger(clazz);
     }
 

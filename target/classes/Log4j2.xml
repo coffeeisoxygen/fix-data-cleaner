@@ -64,5 +64,11 @@
             <AppenderRef ref="AsyncConsole"/>
             <AppenderRef ref="AsyncFile"/>
         </Root>
+        <!-- Technical things Logger -->
+        <Logger name="com.coffeecode.logger.TechnicalLogging" level="INFO" additivity="false">
+            <AppenderRef ref="AsyncConsole"/>
+            <AppenderRef ref="AsyncFile"/>
+        </Logger>
+
     </Loggers>
 </Configuration>
