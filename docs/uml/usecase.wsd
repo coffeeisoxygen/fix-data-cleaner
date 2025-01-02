@@ -1,0 +1,16 @@
+@startuml use_case
+
+actor User
+
+usecase "Upload Data" as UC1
+usecase "Process Data" as UC2
+usecase "Validate Data" as UC3
+usecase "Save Data" as UC4
+
+User -> UC1
+UC1 --> UC2
+UC2 --> UC3
+UC3 --> UC4
+User <- UC4
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml Main Flow
+
+actor User
+participant "DataCleaner" as DC
+participant "FileReader" as FR
+participant "DataValidator" as DV
+participant "DataProcessor" as DP
+participant "ResultViewer" as RV
+participant "DataPersistence" as DB
+
+User -> DC: Upload File(CSV/XLSX)
+DC -> FR: Read File
+FR --> DC: Raw Data
+DC -> DV: Validate Format
+DV --> DC: Validation Result
+
+alt Valid Format
+    DC -> DP: Process Data
+    DP -> DP: Clean Data
+    DP -> DP: Transform Data
+    DP -> DP: Normalize Data
+    DP --> DC: Processed Data
+    DC -> RV: Display Result
+    User -> RV: Review Data
+    
+    alt Data Approved
+        RV -> DB: Save Data
+        DB --> User: Success Message
+    else Data Rejected
+        RV -> DC: Return to Process
+    end
+    
+else Invalid Format
+    DC --> User: Error Message
+end
+
+@enduml
