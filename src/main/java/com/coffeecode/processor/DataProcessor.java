@@ -11,18 +11,19 @@ import com.coffeecode.validation.Validator;
 
 public class DataProcessor implements ProcessingPipeline {
     private static final String ERROR_PROCESS = "PROCESS_ERROR";
+    private static final String ERROR_CONFIG = "CONFIG_ERROR";
     
-    private final ProcessorConfig config;
+    private ProcessorConfig config;
     private final GeneralLogging logger;
     private DataContainer result;
 
-    public DataProcessor(ProcessorConfig config) {
-        this.config = config;
+    public DataProcessor() {
         this.logger = new GeneralLogging(this.getClass());
     }
 
     @Override
     public void process(Path inputPath) throws CustomException {
+        validateConfig();
         try {
             // Parse
             config.getParser().setPath(inputPath);
@@ -43,7 +44,7 @@ public class DataProcessor implements ProcessingPipeline {
             
             logger.info("Validation completed successfully");
             
-        } catch (Exception e) {
+        } catch (CustomException e) {
             logger.error("Processing failed", e);
             throw new CustomException("Failed to process file", ERROR_PROCESS, e);
         }
@@ -56,13 +57,31 @@ public class DataProcessor implements ProcessingPipeline {
 
     @Override
     public void setParser(FileParser parser) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setParser'");
+        if (config == null) {
+            config = new ProcessorConfig.Builder().build();
+        }
+        config = new ProcessorConfig.Builder()
+                .parser(parser)
+                .validator(config.getValidator())
+                .outputPath(config.getOutputPath())
+                .build();
     }
 
     @Override
     public void setValidator(Validator validator) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setValidator'");
+        if (config == null) {
+            config = new ProcessorConfig.Builder().build();
+        }
+        config = new ProcessorConfig.Builder()
+                .parser(config.getParser())
+                .validator(validator)
+                .outputPath(config.getOutputPath())
+                .build();
+    }
+
+    private void validateConfig() throws CustomException {
+        if (config == null || config.getParser() == null || config.getValidator() == null) {
+            throw new CustomException("Invalid processor configuration", ERROR_CONFIG);
+        }
     }
 }

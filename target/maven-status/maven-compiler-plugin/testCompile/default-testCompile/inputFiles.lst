@@ -2,4 +2,5 @@ E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\AppTes
 E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\model\DataContainerTest.java
 E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\parser\csv\CSVParserIntegrationTest.java
 E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\parser\csv\OpenCSVLibraryTest.java
+E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\processor\DataProcessorTest.java
 E:\developement\fix-datacleaner\data-cleaner\src\test\java\com\coffeecode\validation\ColumnValidatorTest.java

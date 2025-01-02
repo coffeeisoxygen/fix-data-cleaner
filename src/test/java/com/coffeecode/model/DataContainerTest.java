@@ -13,6 +13,7 @@ class DataContainerTest {
     private DataContainer container;
 
     @BeforeEach
+    @SuppressWarnings("unused")
     void setUp() {
         container = new DataContainer();
     }
