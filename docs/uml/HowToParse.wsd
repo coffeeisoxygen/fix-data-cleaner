@@ -1,30 +1,69 @@
 @startuml HowToParseCSV
 
-start
+title CSV Processing Strategy
+note right: Considerations and Trade-offs
 
-:User Upload File;
-if (Validate File Type?) then (Valid)
-  :Open File;
-  :Initialize Iteration;
-  while (More Lines in File?) is (Yes)
-    :Read Line;
-    :Split Line into Columns;
-    if (Is Header Based on Longest Row?) then (Yes)
-      :Set Header;
-      :Store Row Index;
-    else
-      if (Row is Before Header?) then (Yes)
-        :Add Row to Metadata;
-      else (No)
-        :Add Row to Content;
-      endif
-    endif
-  endwhile
-  :Display Parsed Data;
-else (Invalid)
-  :Show Error Message;
+' Initialization Phase
+:Validate File Type;
+note right
+  * Trade-off: Strict vs Flexible validation
+  * Impact: Reliability vs Usability
+  * Cost: Initial processing overhead
+end note
+
+if (Is Valid?) then (Yes)
+    :Initialize Parser;
+    note right
+      * Memory: Buffered vs Streaming
+      * Trade-off: Speed vs Memory usage
+      * Impact: Large file handling
+    end note
+
+    while (More Lines?) is (Yes)
+        :Process Line;
+        note right
+          * Strategy: Line-by-line vs Batch
+          * Trade-off: Memory vs Performance
+          * Impact: Processing speed
+        end note
+
+        if (Is Empty Row?) then (Yes)
+            :Handle Empty Row;
+            note left
+              * Options: Skip vs Count
+              * Trade-off: Data loss vs Structure
+              * Impact: Section detection
+            end note
+        else (No)
+            :Parse Content;
+            note right
+              * Method: Single vs Multi-pass
+              * Trade-off: Accuracy vs Speed
+              * Impact: Data quality
+            end note
+        endif
+    endwhile
+
+    :Generate Report;
+    note right
+      * Detail: Basic vs Comprehensive
+      * Trade-off: Information vs Clarity
+      * Impact: Usability
+    end note
+else (No)
+    :Handle Error;
+    note right
+      * Level: Strict vs Tolerant
+      * Trade-off: Safety vs Flexibility
+      * Impact: User experience
+    end note
 endif
 
 stop
+
+footer
+  Created: %date()
+  Version: 1.0
+end footer
 
 @enduml

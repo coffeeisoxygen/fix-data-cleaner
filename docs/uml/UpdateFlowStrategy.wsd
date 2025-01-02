@@ -1,0 +1,39 @@
+@startuml CSVProcessingFlow
+
+title CSV Processing Strategy
+
+:Upload File;
+
+:Validate File Type;
+note right: Check file extension and basic structure
+
+:Initialize Parser;
+note right: Setup with auto-detection capability
+
+while (More Lines?) is (Yes)
+    :Read Line;
+    if (Is Blank?) then (Yes)
+        :Skip Row;
+    else (No)
+        if (Contains "DateTime"?) then (Yes)
+            :Mark as Header;
+            :Store Header Position;
+            :Extract Metadata Above;
+            :Process Remaining as Content;
+            break
+        endif
+    endif
+endwhile
+
+:Process Data;
+note right
+    * Metadata: Lines before header
+    * Header: DateTime line
+    * Content: Lines after header
+end note
+
+:Generate Result;
+
+stop
+
+@enduml
