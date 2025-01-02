@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.Mock;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -36,7 +37,9 @@ class CSVParserTest {
         config = new CSVConfig.Builder().build();
         parser = new CSVParser(csvLibrary, config);
         container = new DataContainer();
-        testFile = new File("test.csv");
+        testFile = mock(File.class);
+        when(testFile.exists()).thenReturn(true);
+        when(testFile.getName()).thenReturn("test.csv");
         parser.setFile(testFile);
     }
 
@@ -72,12 +75,15 @@ class CSVParserTest {
 
     @Test
     void testParseError() throws CustomException {
-        // Setup
-        doThrow(new CustomException("Mock error"))
-                .when(csvLibrary).initialize(any(), any());
+        CustomException mockError = new CustomException("Mock error");
+        doThrow(mockError).when(csvLibrary).initialize(any(), any());
 
-        // Execute & Verify
-        CustomException exception = assertThrows(CustomException.class, () -> parser.parse(container));
-        assertEquals("Mock error", exception.getMessage());
+        CustomException thrown = assertThrows(
+            CustomException.class, 
+            () -> parser.parse(container)
+        );
+        
+        assertEquals("Failed to parse CSV content", thrown.getMessage());
+        assertEquals(mockError, thrown.getCause());
     }
 }

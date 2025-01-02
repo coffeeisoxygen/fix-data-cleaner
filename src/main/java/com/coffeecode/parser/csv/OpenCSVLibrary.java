@@ -10,9 +10,10 @@ import java.util.List;
 import com.coffeecode.exception.CustomException;
 import com.coffeecode.logger.GeneralLogging;
 import com.coffeecode.parser.csv.config.CSVConfig;
+import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.CSVParserBuilder;
+import com.opencsv.exceptions.CsvValidationException;
 
 public class OpenCSVLibrary implements CSVLibrary {
     private static final String ERROR_INIT = "CSV_INIT_ERROR";
@@ -47,7 +48,7 @@ public class OpenCSVLibrary implements CSVLibrary {
         try {
             String[] line = csvReader.readNext();
             return line != null ? Arrays.asList(line) : null;
-        } catch (Exception e) {
+        } catch (CsvValidationException | IOException e) {
             throw new CustomException("Failed to read CSV line", ERROR_READ, e);
         }
     }
