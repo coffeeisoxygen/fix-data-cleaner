@@ -1,4 +1,4 @@
-# Created at 2025-01-02T08:11:56.149
+# Created at 2025-01-02T08:21:58.927
 Boot Manifest-JAR contains absolute paths in classpath 'E:\developement\fix-datacleaner\data-cleaner\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 'other' has different root
