@@ -23,7 +23,8 @@
     <disruptor.version>3.4.4</disruptor.version>
     <log4j.async.version>2.22.1</log4j.async.version>
     <opencsv.version>5.9</opencsv.version>
-    <mockito-core.version>3.12.4</mockito-core.version>
+    <mockito-core.version>5.10.0</mockito-core.version>
+    <mockito-junit-jupiter.version>5.10.0</mockito-junit-jupiter.version>
 
     <!-- Plugin Versions -->
     <maven.clean.version>3.4.0</maven.clean.version>
@@ -41,7 +42,7 @@
 
   <dependencies>
 
-    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <!-- Mockito Core -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
@@ -49,10 +50,14 @@
       <scope>test</scope>
     </dependency>
 
-
-
+    <!-- Mockito JUnit Jupiter Integration -->
     <dependency>
-      <!-- Testing Dependency -->
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito-junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <version>${junit.jupiter.version}</version>
