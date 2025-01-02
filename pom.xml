@@ -23,6 +23,7 @@
     <disruptor.version>3.4.4</disruptor.version>
     <log4j.async.version>2.22.1</log4j.async.version>
     <opencsv.version>5.9</opencsv.version>
+    <mockito.version>3.12.4</mockito.version>
 
     <!-- Plugin Versions -->
     <maven.clean.version>3.4.0</maven.clean.version>
@@ -35,9 +36,18 @@
     <maven.deploy.version>3.1.1</maven.deploy.version>
     <maven.source.version>3.3.0</maven.source.version>
     <maven.javadoc.version>3.6.3</maven.javadoc.version>
+
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>${mockito.version}</version>
+    </dependency>
+
+
     <dependency>
       <!-- Testing Dependency -->
       <groupId>org.junit.jupiter</groupId>
