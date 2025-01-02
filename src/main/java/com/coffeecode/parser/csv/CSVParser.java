@@ -39,17 +39,22 @@ public class CSVParser extends AbstractParser {
             csvLibrary.initialize(path, config);
             List<String> row;
             while ((row = csvLibrary.readNext()) != null) {
-                container.addRow(row);
+                if (!isEmptyRow(row)) {
+                    container.addRow(row);
+                }
             }
         } catch (CustomException e) {
             logger.error("Failed to parse CSV file", e);
             throw e;
-        } catch (Exception e) {
-            logger.error("Unexpected error during CSV parsing", e);
-            throw new CustomException("Failed to parse CSV content", ERROR_PARSE, e);
         } finally {
             csvLibrary.close();
         }
+    }
+
+    private boolean isEmptyRow(List<String> row) {
+        return row.stream()
+                .map(String::trim)
+                .allMatch(String::isEmpty);
     }
 
     private void validateFile() throws CustomException {
@@ -61,10 +66,19 @@ public class CSVParser extends AbstractParser {
 
     @Override
     public boolean isValid() {
-        return path != null
-                && Files.exists(path)
-                && Files.isReadable(path)
-                && path.toString().toLowerCase().endsWith(".csv");
+        try {
+            logger.debug("Validating file: " + path);
+            boolean exists = path != null && Files.exists(path);
+            boolean readable = exists && Files.isReadable(path);
+            boolean isCsv = readable && path.toString().toLowerCase().endsWith(".csv");
+            logger.debug("File exists: " + exists);
+            logger.debug("File is readable: " + readable);
+            logger.debug("File has .csv extension: " + isCsv);
+            return isCsv;
+        } catch (SecurityException e) {
+            logger.error("Security error checking file", e);
+            return false;
+        }
     }
 
     @Override

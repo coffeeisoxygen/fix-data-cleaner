@@ -25,6 +25,7 @@
     <opencsv.version>5.9</opencsv.version>
     <mockito-core.version>5.10.0</mockito-core.version>
     <mockito-junit-jupiter.version>5.10.0</mockito-junit-jupiter.version>
+    <commons-io.version>2.14.0</commons-io.version>
 
     <!-- Plugin Versions -->
     <maven.clean.version>3.4.0</maven.clean.version>
@@ -37,6 +38,7 @@
     <maven.deploy.version>3.1.1</maven.deploy.version>
     <maven.source.version>3.3.0</maven.source.version>
     <maven.javadoc.version>3.6.3</maven.javadoc.version>
+
 
   </properties>
 
@@ -94,6 +96,13 @@
       <groupId>com.opencsv</groupId>
       <artifactId>opencsv</artifactId>
       <version>${opencsv.version}</version>
+    </dependency>
+
+    <!-- File I/O -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
     </dependency>
 
   </dependencies>

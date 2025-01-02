@@ -1,0 +1,32 @@
+﻿
+"Transfer Balance Report"
+
+"End Date: 2024-12-30"
+
+"Start Date: 2024-12-30"
+
+"Area: All"
+
+"Region: All"
+
+"Cluster: All"
+
+"Sales Area: All"
+
+"Channel: All"
+
+"Additional Territory: All"
+
+"Organization ID: "
+
+"Organization Type: All"
+
+"Target Organization ID: "
+
+"DateTime","Transaction ID","Channel","Region","Area","Sales Area","Cluster","Additional Territory","Transaction Channel","Organization Type","Organization ID","Organization Name","Operator ID","Operator Name","Operator Type","MSISDN","User Name","Credit Party ID","Credit Party Name","Approval Operator ID","Approval Operator Name","Approval DateTime","Approval Channel","Account Type","Amount","Debit Party Pre-Balance","Debit Party Post Balance","Credit Party Pre-Balance","Credit Party Post Balance","Transaction Status","Status Description"
+"2024-12-30 10:22:14","03651500029279801355","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","API","SDP","SDP1336","SDP HAURWANGI CIANJUR","DSE1336","DSE1336  ","Canvasser SDP","6285794585285","DSE1336","17686721","Daun mas cihea 2","","","","","Saldo Mobo Account","200000.00","6600000.00","6400000.00","2188.00","202188.00","Completed","Success"
+"2024-12-30 10:22:02","03651700029279796337","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","API","SDP","SDP1336","SDP HAURWANGI CIANJUR","DSE1336","DSE1336  ","Canvasser SDP","6285794585285","DSE1336","17302774","Daun Mas Cihea","","","","","Saldo Mobo Account","200000.00","6800000.00","6600000.00","210487.00","410487.00","Completed","Success"
+"2024-12-30 11:06:58","03651400029280353404","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","API","SDP","SDP1336","SDP HAURWANGI CIANJUR","DSE1336","DSE1336  ","Canvasser SDP","6285794585285","DSE1336","17688326","Azam Cell","","","","","Saldo Mobo Account","400000.00","6400000.00","6000000.00","162392.00","562392.00","Completed","Success"
+"2024-12-30 12:47:14","03651400029281562564","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","WEB","SDP","SDP1336","SDP HAURWANGI CIANJUR","OWN1336","Dewi  ","MPC Owner","628145251914","OWN1336","17681239","Akses Poin","","","","","Saldo Mobo Account","500000.00","6000000.00","5500000.00","9350.00","509350.00","Completed","Success"
+"2024-12-30 13:04:56","03651500029281767045","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","API","SDP","SDP1336","SDP HAURWANGI CIANJUR","DSE1336","DSE1336  ","Canvasser SDP","6285794585285","DSE1336","500615","ROMY CELL","","","","","Saldo Mobo Account","200000.00","5500000.00","5300000.00","470497.00","670497.00","Completed","Success"
+"2024-12-30 13:29:32","03651300029282040583","Traditional","WEST JAVA","WEST JAVA","CIANJUR","MC-CIANJUR TENGAH","PT-HAURWANGI","API","SDP","SDP1336","SDP HAURWANGI CIANJUR","DSE1336","DSE1336  ","Canvasser SDP","6285794585285","DSE1336","1548014","multi komunika","","","","","Saldo Mobo Account","300000.00","5300000.00","5000000.00","11301.50","311301.50","Completed","Success"
