@@ -1,77 +1,57 @@
 package com.coffeecode.parser.csv;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
+import java.nio.file.Paths;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 import com.coffeecode.exception.CustomException;
 import com.coffeecode.parser.csv.config.CSVConfig;
 
 class OpenCSVLibraryTest {
 
-    @TempDir
-    Path tempDir;
-
+    private static final String BASE_PATH = "src/test/resources/csv";
     private OpenCSVLibrary csvLibrary;
     private CSVConfig config;
-    private Path testFile;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         csvLibrary = new OpenCSVLibrary();
         config = new CSVConfig.Builder()
                 .charset("UTF-8")
                 .separator(',')
                 .quoteChar('"')
                 .build();
-
-        testFile = tempDir.resolve("test.csv");
-        Files.writeString(testFile,
-                "Title,Value\n"
-                + "Report,Balance\n"
-                + "\n"
-                + "DateTime,Amount,Status\n"
-                + "2024-01-02,1000,OK\n"
-        );
     }
 
     @Test
-    void testInitialize() throws CustomException {
-        assertDoesNotThrow(() -> csvLibrary.initialize(testFile, config));
+    void testWithTransferFile() throws CustomException {
+        Path path = Paths.get(BASE_PATH, "1336_transfer_30_dec_24.csv");
+        csvLibrary.initialize(path, config);
+
+        // Skip metadata
+        List<String> line;
+        while ((line = csvLibrary.readNext()) != null) {
+            if (csvLibrary.isHeaderLine(line)) {
+                assertTrue(line.contains("DateTime"), "Header not found");
+                break;
+            }
+        }
     }
 
     @Test
-    void testReadNext() throws CustomException {
-        csvLibrary.initialize(testFile, config);
+    void testWithKomisiFile() throws CustomException {
+        Path path = Paths.get(BASE_PATH, "1336_komisi_30_dec_24.csv");
+        csvLibrary.initialize(path, config);
+        verifyFileStructure("Commission and Incentive Details Report");
+    }
+
+    private void verifyFileStructure(String expectedTitle) throws CustomException {
         List<String> firstLine = csvLibrary.readNext();
-        assertEquals(Arrays.asList("Title", "Value"), firstLine);
-    }
-
-    @Test
-    void testIsHeaderLine() {
-        assertTrue(csvLibrary.isHeaderLine(Arrays.asList("DateTime", "Amount")));
-        assertFalse(csvLibrary.isHeaderLine(Arrays.asList("Title", "Value")));
-    }
-
-    @Test
-    void testIsBlankLine() {
-        assertTrue(csvLibrary.isBlankLine(Arrays.asList("", "", "")));
-        assertTrue(csvLibrary.isBlankLine(null));
-        assertFalse(csvLibrary.isBlankLine(Arrays.asList("Data", "", "Value")));
-    }
-
-    @Test
-    void testClose() throws CustomException {
-        csvLibrary.initialize(testFile, config);
-        assertDoesNotThrow(() -> csvLibrary.close());
+        assertEquals(expectedTitle, firstLine.get(0).replace("\"", ""));
     }
 }

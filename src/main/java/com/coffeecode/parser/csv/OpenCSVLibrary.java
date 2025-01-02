@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import com.coffeecode.exception.CustomException;
 import com.coffeecode.logger.GeneralLogging;
@@ -20,6 +21,7 @@ public class OpenCSVLibrary implements CSVLibrary {
     private static final String ERROR_INIT = "CSV_INIT_ERROR";
     private static final String ERROR_READ = "CSV_READ_ERROR";
     private static final String ERROR_CLOSE = "CSV_CLOSE_ERROR";
+    private static final char BOM_MARKER = '\uFEFF';
 
     private final GeneralLogging logger;
     private CSVReader csvReader;
@@ -50,11 +52,16 @@ public class OpenCSVLibrary implements CSVLibrary {
     public List<String> readNext() throws CustomException {
         try {
             String[] line = csvReader.readNext();
-            if (line != null && line.length > 0 && line[0] != null && line[0].startsWith("\uFEFF")) {
-                // Check and remove BOM from the first element
-                line[0] = line[0].substring(1); // Remove BOM if present
+            if (line != null && line.length > 0) {
+                if (line[0] != null && !line[0].isEmpty() && line[0].charAt(0) == BOM_MARKER) {
+                    // Handle BOM in first line
+                    line[0] = line[0].substring(1);
+                }
+            } else {
+                // Handle empty lines
+                return Arrays.asList("");
             }
-            return line != null ? Arrays.asList(line) : null;
+            return Arrays.asList(line);
         } catch (IOException | CsvValidationException e) {
             throw new CustomException("Failed to read CSV line", ERROR_READ, e);
         }
@@ -74,19 +81,24 @@ public class OpenCSVLibrary implements CSVLibrary {
 
     @Override
     public boolean isHeaderLine(List<String> line) {
-        return line != null
-                && !line.isEmpty()
-                && line.stream()
-                        .anyMatch(field -> field != null
-                        && field.trim().contains(headerMarker));
+        if (line == null || line.isEmpty()) {
+            return false;
+        }
+
+        return line.stream()
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .anyMatch(s -> s.contains(headerMarker));
     }
 
     @Override
     public boolean isBlankLine(List<String> line) {
-        return line == null
-                || line.isEmpty()
-                || line.stream()
-                        .allMatch(field -> field == null
-                        || field.trim().isEmpty());
+        if (line == null || line.isEmpty()) {
+            return true;
+        }
+
+        return line.stream()
+                .allMatch(field -> field == null || field.trim().isEmpty());
     }
 }

@@ -16,3 +16,4 @@ com\coffeecode\model\DataModel.class
 com\coffeecode\exception\CustomException.class
 com\coffeecode\exception\ThrowingCallable.class
 com\coffeecode\model\DataContainer.class
+com\coffeecode\parser\FileParser.class

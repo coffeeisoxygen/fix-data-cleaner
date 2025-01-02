@@ -1,0 +1,4 @@
+com\coffeecode\AppTest.class
+com\coffeecode\model\DataContainerTest.class
+com\coffeecode\parser\csv\OpenCSVLibraryTest.class
+com\coffeecode\parser\csv\CSVParserIntegrationTest.class
