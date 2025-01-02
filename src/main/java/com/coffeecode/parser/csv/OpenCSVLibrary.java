@@ -20,6 +20,7 @@ public class OpenCSVLibrary implements CSVLibrary {
     private static final String ERROR_INIT = "CSV_INIT_ERROR";
     private static final String ERROR_READ = "CSV_READ_ERROR";
     private static final String ERROR_CLOSE = "CSV_CLOSE_ERROR";
+    private static final String HEADER_MARKER = "DateTime";
 
     private final GeneralLogging logger;
     private CSVReader csvReader;
@@ -36,10 +37,8 @@ public class OpenCSVLibrary implements CSVLibrary {
                     .withCSVParser(new CSVParserBuilder()
                             .withSeparator(config.getSeparator())
                             .withQuoteChar(config.getQuoteChar())
-                            // .withSkipLines(config.getSkipLines())
                             .build())
-                    .withSkipLines(1) // Skip header line
-                    .build();
+                    .build(); // Remove skip lines as we handle it in parser
             logger.info("CSV reader initialized successfully");
         } catch (IOException e) {
             throw new CustomException("Failed to initialize CSV reader", ERROR_INIT, e);
@@ -51,7 +50,7 @@ public class OpenCSVLibrary implements CSVLibrary {
         try {
             String[] line = csvReader.readNext();
             return line != null ? Arrays.asList(line) : null;
-        } catch (CsvValidationException | IOException e) {
+        } catch (IOException | CsvValidationException e) {
             throw new CustomException("Failed to read CSV line", ERROR_READ, e);
         }
     }
@@ -66,5 +65,23 @@ public class OpenCSVLibrary implements CSVLibrary {
         } catch (IOException e) {
             throw new CustomException("Failed to close CSV reader", ERROR_CLOSE, e);
         }
+    }
+
+    @Override
+    public boolean isHeaderLine(List<String> line) {
+        return line != null
+                && !line.isEmpty()
+                && line.stream()
+                        .anyMatch(field -> field != null
+                        && field.trim().contains(HEADER_MARKER));
+    }
+
+    @Override
+    public boolean isBlankLine(List<String> line) {
+        return line == null
+                || line.isEmpty()
+                || line.stream()
+                        .allMatch(field -> field == null
+                        || field.trim().isEmpty());
     }
 }

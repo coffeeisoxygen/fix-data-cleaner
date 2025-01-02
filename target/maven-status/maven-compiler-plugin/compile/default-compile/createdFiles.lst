@@ -17,6 +17,5 @@ com\coffeecode\logger\AbstractLogging.class
 com\coffeecode\parser\csv\CSVParser.class
 com\coffeecode\model\DataModel.class
 com\coffeecode\exception\CustomException.class
-com\coffeecode\util\Position.class
 com\coffeecode\exception\ThrowingCallable.class
 com\coffeecode\model\DataContainer.class

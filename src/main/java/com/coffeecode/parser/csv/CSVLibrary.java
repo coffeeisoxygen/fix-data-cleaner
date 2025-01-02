@@ -14,4 +14,8 @@ public interface CSVLibrary {
 
     void close() throws CustomException;
 
+    boolean isHeaderLine(List<String> line);
+
+    boolean isBlankLine(List<String> line);
+
 }
