@@ -4,11 +4,13 @@ import com.coffeecode.parser.FileParser;
 import com.coffeecode.validation.Validator;
 
 public class ProcessorConfig {
+
     private FileParser parser;
     private Validator validator;
     private String outputPath;
 
     public static class Builder {
+
         private ProcessorConfig config = new ProcessorConfig();
 
         public Builder parser(FileParser parser) {
@@ -29,9 +31,25 @@ public class ProcessorConfig {
         public ProcessorConfig build() {
             return config;
         }
+
+        public ProcessorConfig getConfig() {
+            return config;
+        }
+
+        public void setConfig(ProcessorConfig config) {
+            this.config = config;
+        }
     }
 
-    public FileParser getParser() { return parser; }
-    public Validator getValidator() { return validator; }
-    public String getOutputPath() { return outputPath; }
+    public FileParser getParser() {
+        return parser;
+    }
+
+    public Validator getValidator() {
+        return validator;
+    }
+
+    public String getOutputPath() {
+        return outputPath;
+    }
 }

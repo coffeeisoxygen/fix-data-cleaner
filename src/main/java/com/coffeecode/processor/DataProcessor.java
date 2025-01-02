@@ -1,10 +1,13 @@
 package com.coffeecode.processor;
 
+import java.nio.file.Path;
+
 import com.coffeecode.exception.CustomException;
 import com.coffeecode.logger.GeneralLogging;
 import com.coffeecode.model.DataContainer;
+import com.coffeecode.parser.FileParser;
 import com.coffeecode.validation.ValidationResult;
-import java.nio.file.Path;
+import com.coffeecode.validation.Validator;
 
 public class DataProcessor implements ProcessingPipeline {
     private static final String ERROR_PROCESS = "PROCESS_ERROR";
@@ -49,5 +52,17 @@ public class DataProcessor implements ProcessingPipeline {
     @Override
     public DataContainer getResult() {
         return result;
+    }
+
+    @Override
+    public void setParser(FileParser parser) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setParser'");
+    }
+
+    @Override
+    public void setValidator(Validator validator) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setValidator'");
     }
 }

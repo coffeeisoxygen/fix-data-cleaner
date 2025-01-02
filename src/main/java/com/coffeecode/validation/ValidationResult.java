@@ -5,7 +5,9 @@ import java.util.List;
 
 public class ValidationResult {
     private final List<ValidationError> errors;
+    @SuppressWarnings("unused")
     private final int expectedColumns;
+    @SuppressWarnings("unused")
     private final int actualColumns;
 
     public ValidationResult(int expectedColumns, int actualColumns) {

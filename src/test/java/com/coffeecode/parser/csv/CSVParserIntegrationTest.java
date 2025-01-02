@@ -22,6 +22,7 @@ class CSVParserIntegrationTest {
     private CSVConfig config;
 
     @BeforeEach
+    @SuppressWarnings("unused")
     void setUp() {
         config = new CSVConfig.Builder()
                 .charset("UTF-8")

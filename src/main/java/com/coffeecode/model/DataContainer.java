@@ -57,4 +57,12 @@ public class DataContainer implements DataModel {
     public List<List<String>> getData() {
         return getContent();
     }
+
+    public void setContent(List<List<String>> content) {
+        this.content = content;
+    }
+
+    public void setMetadata(List<List<String>> metadata) {
+        this.metadata = metadata;
+    }
 }

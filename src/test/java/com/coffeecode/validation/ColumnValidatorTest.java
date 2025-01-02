@@ -16,6 +16,7 @@ class ColumnValidatorTest {
     private List<List<String>> content;
 
     @BeforeEach
+    @SuppressWarnings("unused")
     void setUp() {
         validator = new ColumnValidator();
         headers = new ArrayList<>(Arrays.asList("DateTime", "Amount", "Status"));
