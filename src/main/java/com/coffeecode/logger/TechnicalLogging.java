@@ -3,7 +3,7 @@ package com.coffeecode.logger;
 import java.io.File;
 
 import com.coffeecode.exception.CustomException;
-import com.coffeecode.exception.ThrowingRunnable;
+import com.coffeecode.exception.ThrowingCallable;
 
 public class TechnicalLogging extends AbstractLogging {
 
@@ -11,11 +11,11 @@ public class TechnicalLogging extends AbstractLogging {
         super(clazz);
     }
 
-    public void logExecutionTime(String taskName, ThrowingRunnable runnable) throws CustomException {
+    public <T> T logExecutionTime(String taskName, ThrowingCallable<T> callable) throws CustomException {
         long startTime = System.currentTimeMillis();
         try {
-            runnable.run();
-        } catch (Exception e) {
+            return callable.call();
+        } catch (CustomException e) {
             log(LogLevel.ERROR, String.format("Task [%s] failed", taskName), e);
             throw new CustomException("Task execution failed", e);
         } finally {
@@ -26,20 +26,20 @@ public class TechnicalLogging extends AbstractLogging {
 
     public void logSystemInfo() {
         log(LogLevel.DEBUG, String.format("OS: %s, Version: %s, Arch: %s",
-            System.getProperty("os.name"),
-            System.getProperty("os.version"),
-            System.getProperty("os.arch")));
+                System.getProperty("os.name"),
+                System.getProperty("os.version"),
+                System.getProperty("os.arch")));
         log(LogLevel.DEBUG, String.format("Java: %s, VM: %s",
-            System.getProperty("java.version"),
-            System.getProperty("java.vm.name")));
+                System.getProperty("java.version"),
+                System.getProperty("java.vm.name")));
         logMemoryUsage();
         logDiskUsage();
         logThreadDetails();
     }
 
     public void logPerformanceMetric(String category, String metric, Object value) {
-        log(LogLevel.DEBUG, String.format("Performance[%s] - %s: %s", 
-            category, metric, value));
+        log(LogLevel.DEBUG, String.format("Performance[%s] - %s: %s",
+                category, metric, value));
     }
 
     public void logMemoryUsage() {
@@ -80,4 +80,5 @@ public class TechnicalLogging extends AbstractLogging {
                     String.format("%.2f", speed));
         }
     }
+
 }
