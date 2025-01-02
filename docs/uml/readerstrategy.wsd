@@ -1,0 +1,18 @@
+@startuml ReaderStrategy
+
+graph TD
+    A[Read File] --> B{Analyze Rows}
+    B --> C{Check Empty Rows}
+    B --> D{Check Data Types}
+    B --> E{Find Delimiter}
+    C --> F{Find Longest Row}
+    F --> G[Mark as Potential Header]
+    G --> H{Validate Header}
+    H -- Yes --> I{Split Data}
+    H -- No --> J{Infer Schema}
+    I --> K[Metadata Above Header]
+    I --> L[Content Below Header]
+    J --> M[Split Data]
+    M --> K[Metadata Above Header]
+    M --> L[Content Below Header]
+@enduml
