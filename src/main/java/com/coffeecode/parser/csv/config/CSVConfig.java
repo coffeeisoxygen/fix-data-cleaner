@@ -8,6 +8,7 @@ public class CSVConfig {
     private int skipLines = 0;
     private int bufferSize = 8192;
     private boolean ignoreEmptyLines = true;
+    private String headerMarker = "DateTime";
 
     private CSVConfig() {
     }
@@ -46,6 +47,11 @@ public class CSVConfig {
             return this;
         }
 
+        public Builder headerMarker(String headerMarker) {
+            config.headerMarker = headerMarker;
+            return this;
+        }
+
         public CSVConfig build() {
             return config;
         }
@@ -74,5 +80,9 @@ public class CSVConfig {
 
     public boolean isIgnoreEmptyLines() {
         return ignoreEmptyLines;
+    }
+
+    public String getHeaderMarker() {
+        return headerMarker;
     }
 }

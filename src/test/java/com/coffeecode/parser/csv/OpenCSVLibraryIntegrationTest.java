@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,7 @@ import com.coffeecode.exception.CustomException;
 import com.coffeecode.parser.csv.config.CSVConfig;
 
 class OpenCSVLibraryIntegrationTest {
-
-    private static final String TEST_FILE = "src/test/resources/csv/1336_transfer_30_dec_24.csv";
+    private static final String BASE_PATH = "src/test/resources/csv";
     private OpenCSVLibrary csvLibrary;
     private CSVConfig config;
 
@@ -29,26 +28,57 @@ class OpenCSVLibraryIntegrationTest {
     }
 
     @Test
-    void testReadActualFile() throws CustomException {
-        Path path = Paths.get(TEST_FILE);
+    void testKomisiFile() throws CustomException {
+        Path path = Paths.get(BASE_PATH, "1336_komisi_30_dec_24.csv");
         csvLibrary.initialize(path, config);
+        processAndVerifyFile("Commission and Incentive Details Report");
+    }
 
+    @Test
+    void testTransferFile() throws CustomException {
+        Path path = Paths.get(BASE_PATH, "1336_transfer_30_dec_24.csv");
+        csvLibrary.initialize(path, config);
+        processAndVerifyFile("Transfer Balance Report");
+    }
+
+    @Test
+    void testTransaksiFile() throws CustomException {
+        Path path = Paths.get(BASE_PATH, "1336_transaksi_30_dec_24.csv");
+        csvLibrary.initialize(path, config);
+        processAndVerifyFile("Transaction Detail Report");
+    }
+
+    private void processAndVerifyFile(String expectedTitle) throws CustomException {
         try {
-            // Read until header
+            // Skip empty lines until title found
             List<String> line;
-            boolean headerFound = false;
-            while ((line = csvLibrary.readNext()) != null && !headerFound) {
-                if (csvLibrary.isHeaderLine(line)) {
-                    headerFound = true;
-                    assertTrue(line.contains("DateTime"), "Header should contain DateTime");
+            String firstCell = "";
+            while ((line = csvLibrary.readNext()) != null) {
+                if (!csvLibrary.isBlankLine(line)) {
+                    firstCell = line.get(0)
+                        .replace("\"", "")
+                        .replace("\uFEFF", "") // Remove BOM
+                        .trim();
+                    if (!firstCell.isEmpty()) {
+                        break;
+                    }
                 }
             }
-            assertTrue(headerFound, "Header should be found in file");
-
-            // Read first data row
-            line = csvLibrary.readNext();
-            assertNotNull(line);
-            assertTrue(line.get(0).contains("2024-12-30"), "Should contain correct date");
+            
+            // Verify title
+            assertEquals(expectedTitle, firstCell, 
+                String.format("Title mismatch. Expected: %s, Found: %s", expectedTitle, firstCell));
+            
+            // Find header
+            boolean headerFound = false;
+            while ((line = csvLibrary.readNext()) != null && !headerFound) {
+                if (!csvLibrary.isBlankLine(line) && csvLibrary.isHeaderLine(line)) {
+                    headerFound = true;
+                    assertTrue(line.contains("DateTime"), 
+                        "Header must contain DateTime");
+                }
+            }
+            assertTrue(headerFound, "Header not found");
         } finally {
             csvLibrary.close();
         }

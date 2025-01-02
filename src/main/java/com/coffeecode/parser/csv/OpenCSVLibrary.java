@@ -20,10 +20,10 @@ public class OpenCSVLibrary implements CSVLibrary {
     private static final String ERROR_INIT = "CSV_INIT_ERROR";
     private static final String ERROR_READ = "CSV_READ_ERROR";
     private static final String ERROR_CLOSE = "CSV_CLOSE_ERROR";
-    private static final String HEADER_MARKER = "DateTime";
 
     private final GeneralLogging logger;
     private CSVReader csvReader;
+    private String headerMarker;
 
     public OpenCSVLibrary() {
         this.logger = new GeneralLogging(this.getClass());
@@ -32,6 +32,7 @@ public class OpenCSVLibrary implements CSVLibrary {
     @Override
     public void initialize(Path path, CSVConfig config) throws CustomException {
         try {
+            this.headerMarker = config.getHeaderMarker();
             csvReader = new CSVReaderBuilder(
                     Files.newBufferedReader(path, Charset.forName(config.getCharset())))
                     .withCSVParser(new CSVParserBuilder()
@@ -39,7 +40,7 @@ public class OpenCSVLibrary implements CSVLibrary {
                             .withQuoteChar(config.getQuoteChar())
                             .build())
                     .build(); // Remove skip lines as we handle it in parser
-            logger.info("CSV reader initialized successfully");
+            logger.info("CSV reader initialized with header marker: " + headerMarker);
         } catch (IOException e) {
             throw new CustomException("Failed to initialize CSV reader", ERROR_INIT, e);
         }
@@ -49,6 +50,10 @@ public class OpenCSVLibrary implements CSVLibrary {
     public List<String> readNext() throws CustomException {
         try {
             String[] line = csvReader.readNext();
+            if (line != null && line.length > 0 && line[0] != null && line[0].startsWith("\uFEFF")) {
+                // Check and remove BOM from the first element
+                line[0] = line[0].substring(1); // Remove BOM if present
+            }
             return line != null ? Arrays.asList(line) : null;
         } catch (IOException | CsvValidationException e) {
             throw new CustomException("Failed to read CSV line", ERROR_READ, e);
@@ -73,7 +78,7 @@ public class OpenCSVLibrary implements CSVLibrary {
                 && !line.isEmpty()
                 && line.stream()
                         .anyMatch(field -> field != null
-                        && field.trim().contains(HEADER_MARKER));
+                        && field.trim().contains(headerMarker));
     }
 
     @Override
