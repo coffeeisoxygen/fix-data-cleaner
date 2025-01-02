@@ -1,5 +1,6 @@
 package com.coffeecode.processor;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -42,8 +43,13 @@ public class CSVProcessor extends AbstractFileProcessor {
     @Override
     protected void initializeReader() throws CustomException {
         try {
-            csvReader = new CSVReaderBuilder(
-                    Files.newBufferedReader(file.toPath(), Charset.forName(csvConfig.getCharset())))
+            BufferedReader reader = Files.newBufferedReader(file.toPath(), Charset.forName(csvConfig.getCharset()));
+            reader.mark(1);
+            int firstChar = reader.read();
+            if (firstChar != '\ufeff' && firstChar != -1) {
+                reader.reset();
+            }
+            csvReader = new CSVReaderBuilder(reader)
                     .withSkipLines(csvConfig.getSkipLines())
                     .withCSVParser(new CSVParserBuilder()
                             .withSeparator(csvConfig.getSeparator())
@@ -63,23 +69,31 @@ public class CSVProcessor extends AbstractFileProcessor {
 
         return new Iterator<List<String>>() {
             private String[] nextLine;
+            private boolean hasNextCalled = false;
 
             @Override
             public boolean hasNext() {
-                try {
-                    nextLine = csvReader.readNext();
-                    return nextLine != null;
-                } catch (CsvValidationException | IOException e) {
-                    logger.error("Failed to read CSV line", e);
-                    throw new CsvRuntimeException("Failed to read CSV line", e);
+                if (!hasNextCalled) {
+                    try {
+                        nextLine = csvReader.readNext();
+                        hasNextCalled = true;
+                    } catch (CsvValidationException | IOException e) {
+                        logger.error("Failed to read CSV line", e);
+                        throw new CsvRuntimeException("Failed to read CSV line", e);
+                    }
                 }
+                return nextLine != null;
             }
 
             @Override
             public List<String> next() {
+                if (!hasNextCalled && !hasNext()) {
+                    throw new NoSuchElementException("No more elements in the CSV file");
+                }
                 if (nextLine == null) {
                     throw new NoSuchElementException("No more elements in the CSV file");
                 }
+                hasNextCalled = false;
                 return new ArrayList<>(List.of(nextLine));
             }
         };
