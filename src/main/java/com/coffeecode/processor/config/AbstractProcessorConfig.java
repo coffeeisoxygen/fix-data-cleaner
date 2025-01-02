@@ -8,14 +8,22 @@ public abstract class AbstractProcessorConfig implements ProcessorConfig {
     protected long maxFileSize = 100 * 1024 * 1024; // 100MB
 
     @Override
-    public String getCharset() { return charset; }
+    public String getCharset() {
+        return charset;
+    }
 
     @Override
-    public int getBufferSize() { return bufferSize; }
+    public int getBufferSize() {
+        return bufferSize;
+    }
 
     @Override
-    public int getMaxRows() { return maxRows; }
+    public int getMaxRows() {
+        return maxRows;
+    }
 
     @Override
-    public int getSkipLines() { return skipLines; }
+    public int getSkipLines() {
+        return skipLines;
+    }
 }
