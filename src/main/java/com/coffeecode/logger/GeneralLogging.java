@@ -1,32 +1,28 @@
 package com.coffeecode.logger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class GeneralLogging {
-    private final Logger logger;
+public class GeneralLogging extends AbstractLogging {
 
     public GeneralLogging(Class<?> clazz) {
-        this.logger = LoggerFactory.getLogger(clazz);
+        super(clazz);
     }
 
     public void info(String message) {
-        logger.info(message);
+        log(LogLevel.INFO, message);
     }
 
     public void debug(String message) {
-        logger.debug(message);
+        log(LogLevel.DEBUG, message);
     }
 
     public void error(String message) {
-        logger.error(message);
+        log(LogLevel.ERROR, message);
     }
 
     public void error(String message, Throwable throwable) {
-        logger.error(message, throwable);
+        log(LogLevel.ERROR, message, throwable);
     }
 
     public void warn(String message) {
-        logger.warn(message);
+        log(LogLevel.WARN, message);
     }
 }

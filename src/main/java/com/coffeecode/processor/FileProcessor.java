@@ -7,9 +7,11 @@ import java.util.List;
 import com.coffeecode.exception.CustomException;
 
 public interface FileProcessor {
-    boolean validateFile(File file);
+    boolean validateFile(File file) throws CustomException;
 
     Iterator<List<String>> getIterator() throws CustomException;
 
-    List<List<String>> readToArray();
+    List<List<String>> readToArray() throws CustomException;
+
+    void close() throws CustomException;
 }

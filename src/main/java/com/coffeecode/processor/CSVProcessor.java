@@ -31,21 +31,17 @@ public class CSVProcessor implements FileProcessor {
     }
 
     @Override
-    public boolean validateFile(File file) {
+    public boolean validateFile(File file) throws CustomException {
         this.file = file;
-        String fileName = file.getName().toLowerCase();
-        boolean isValid = fileName.endsWith(".csv");
-
-        if (!isValid) {
-            logger.error("Invalid file type: " + fileName);
-            try {
-                throw new CustomException("File must be CSV format", ERROR_CODE_CSV_INVALID);
-            } catch (CustomException e) {
-                logger.error("Failed to validate CSV file", e);
+        techLogger.logExecutionTime("File Validation", () -> {
+            if (!file.exists()) {
+                throw new CustomException("File does not exist", ERROR_CODE_CSV_INVALID);
             }
-        }
-
-        logger.info("Validated CSV file: " + fileName);
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                throw new CustomException("Invalid file type", ERROR_CODE_CSV_INVALID);
+            }
+        });
+        logger.info("File validated successfully: " + file.getName());
         return true;
     }
 
@@ -99,5 +95,17 @@ public class CSVProcessor implements FileProcessor {
         });
         techLogger.logMemoryUsage();
         return data;
+    }
+
+    @Override
+    public void close() throws CustomException {
+        try {
+            if (csvReader != null) {
+                csvReader.close();
+                logger.info("CSV Reader closed successfully");
+            }
+        } catch (Exception e) {
+            throw new CustomException("Failed to close CSV reader", "CSV_CLOSE_ERROR", e);
+        }
     }
 }
