@@ -29,29 +29,37 @@ class OpenCSVLibraryTest {
     }
 
     @Test
-    void testWithTransferFile() throws CustomException {
+    void testReadTransferFile() throws CustomException {
         Path path = Paths.get(BASE_PATH, "1336_transfer_30_dec_24.csv");
         csvLibrary.initialize(path, config);
-
-        // Skip metadata
-        List<String> line;
-        while ((line = csvLibrary.readNext()) != null) {
-            if (csvLibrary.isHeaderLine(line)) {
-                assertTrue(line.contains("DateTime"), "Header not found");
-                break;
-            }
-        }
+        verifyHeaderAndContent("Transfer Balance Report");
     }
 
     @Test
-    void testWithKomisiFile() throws CustomException {
+    void testReadKomisiFile() throws CustomException {
         Path path = Paths.get(BASE_PATH, "1336_komisi_30_dec_24.csv");
         csvLibrary.initialize(path, config);
-        verifyFileStructure("Commission and Incentive Details Report");
+        verifyHeaderAndContent("Commission and Incentive Details Report");
     }
 
-    private void verifyFileStructure(String expectedTitle) throws CustomException {
-        List<String> firstLine = csvLibrary.readNext();
-        assertEquals(expectedTitle, firstLine.get(0).replace("\"", ""));
+    private void verifyHeaderAndContent(String expectedTitle) throws CustomException {
+        // Find first non-empty line
+        List<String> line;
+        while ((line = csvLibrary.readNext()) != null) {
+            if (!csvLibrary.isBlankLine(line)) {
+                assertEquals(expectedTitle, line.get(0).replace("\"", "").trim());
+                break;
+            }
+        }
+
+        // Find header
+        boolean headerFound = false;
+        while ((line = csvLibrary.readNext()) != null && !headerFound) {
+            if (csvLibrary.isHeaderLine(line)) {
+                headerFound = true;
+                assertTrue(line.contains("DateTime"), "Header should contain DateTime");
+            }
+        }
+        assertTrue(headerFound, "Header should be found");
     }
 }

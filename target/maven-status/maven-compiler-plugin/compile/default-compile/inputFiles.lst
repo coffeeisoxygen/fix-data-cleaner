@@ -15,3 +15,8 @@ E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\csv\OpenCSVLibrary.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\FileParser.java
 E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\parser\ParserType.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\validation\ColumnRule.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\validation\ColumnValidator.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\validation\ValidationError.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\validation\ValidationResult.java
+E:\developement\fix-datacleaner\data-cleaner\src\main\java\com\coffeecode\validation\Validator.java
