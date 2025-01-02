@@ -1,0 +1,30 @@
+@startuml HowToParseCSV
+
+start
+
+:User Upload File;
+if (Validate File Type?) then (Valid)
+  :Open File;
+  :Initialize Iteration;
+  while (More Lines in File?) is (Yes)
+    :Read Line;
+    :Split Line into Columns;
+    if (Is Header Based on Longest Row?) then (Yes)
+      :Set Header;
+      :Store Row Index;
+    else
+      if (Row is Before Header?) then (Yes)
+        :Add Row to Metadata;
+      else (No)
+        :Add Row to Content;
+      endif
+    endif
+  endwhile
+  :Display Parsed Data;
+else (Invalid)
+  :Show Error Message;
+endif
+
+stop
+
+@enduml

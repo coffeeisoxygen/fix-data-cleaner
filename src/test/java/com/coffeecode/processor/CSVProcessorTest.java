@@ -1,11 +1,9 @@
 package com.coffeecode.processor;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,40 +29,44 @@ class CSVProcessorTest {
     }
 
     @Test
-    void testValidateFile() throws CustomException {
-        assertTrue(processor.validateFile(testFile));
+    void testFileValidation() throws CustomException {
+        assertTrue(processor.validateFile(testFile), "File should be valid");
+        assertTrue(testFile.exists(), "Test file should exist");
     }
 
     @Test
-    void testReadCSV() throws CustomException {
+    void testReadStructure() throws CustomException {
         processor.validateFile(testFile);
         List<List<String>> data = processor.readToArray();
-        assertNotNull(data);
-        assertFalse(data.isEmpty());
         
-        // Check metadata rows
-        assertEquals("Transfer Balance Report", data.get(0).get(0));
+        assertNotNull(data, "Data should not be null");
+        assertTrue(data.size() >= 16, "Should have at least 16 rows");
         
-        // Check header position (row 14)
+        // Verify Report Title
+        assertEquals("Transfer Balance Report", data.get(0).get(0).trim());
+        
+        // Verify Metadata
+        assertEquals("End Date: 2024-12-30", data.get(2).get(0).trim());
+        assertEquals("Start Date: 2024-12-30", data.get(4).get(0).trim());
+        
+        // Verify Headers (row 14)
         List<String> headers = data.get(14);
-        assertTrue(headers.contains("DateTime"));
-        assertTrue(headers.contains("Transaction ID"));
-        
-        // Check data rows
-        List<String> firstDataRow = data.get(15);
-        assertNotNull(firstDataRow);
-        assertEquals(31, firstDataRow.size()); // Number of columns
+        assertEquals(31, headers.size(), "Should have 31 columns");
+        assertEquals("DateTime", headers.get(0).trim());
+        assertEquals("Transaction ID", headers.get(1).trim());
+        assertEquals("Status Description", headers.get(30).trim());
     }
 
     @Test
-    void testIterator() throws CustomException {
+    void testDataContent() throws CustomException {
         processor.validateFile(testFile);
-        Iterator<List<String>> iterator = processor.getIterator();
-        assertTrue(iterator.hasNext());
+        List<List<String>> data = processor.readToArray();
         
-        List<String> firstRow = iterator.next();
-        assertNotNull(firstRow);
-        assertTrue(firstRow.get(0).contains("Transfer Balance Report"));
+        // Test first data row (row 15)
+        List<String> firstDataRow = data.get(15);
+        assertEquals(31, firstDataRow.size(), "Data row should have 31 columns");
+        assertTrue(firstDataRow.get(0).matches("\\d{4}-\\d{2}-\\d{2}.*"), "Should match date format");
+        assertTrue(firstDataRow.get(1).matches("\\d+"), "Transaction ID should be numeric");
     }
 
     @Test
@@ -72,7 +74,7 @@ class CSVProcessorTest {
         processor.validateFile(testFile);
         processor.readToArray();
         
-        assertTrue(processor.getRowCount() > 0);
-        assertTrue(processor.getMemoryUsed() > 0);
+        assertTrue(processor.getRowCount() > 0, "Should have processed rows");
+        assertTrue(processor.getMemoryUsed() > 0, "Should have used memory");
     }
 }

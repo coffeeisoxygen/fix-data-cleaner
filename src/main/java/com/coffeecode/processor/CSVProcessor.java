@@ -48,6 +48,8 @@ public class CSVProcessor extends AbstractFileProcessor {
             int firstChar = reader.read();
             if (firstChar != '\ufeff' && firstChar != -1) {
                 reader.reset();
+            } else if (firstChar == -1) {
+                throw new CustomException("Empty CSV file", ERROR_INIT);
             }
             csvReader = new CSVReaderBuilder(reader)
                     .withSkipLines(csvConfig.getSkipLines())
@@ -74,13 +76,7 @@ public class CSVProcessor extends AbstractFileProcessor {
             @Override
             public boolean hasNext() {
                 if (!hasNextCalled) {
-                    try {
-                        nextLine = csvReader.readNext();
-                        hasNextCalled = true;
-                    } catch (CsvValidationException | IOException e) {
-                        logger.error("Failed to read CSV line", e);
-                        throw new CsvRuntimeException("Failed to read CSV line", e);
-                    }
+                    readNextLine();
                 }
                 return nextLine != null;
             }
@@ -94,7 +90,25 @@ public class CSVProcessor extends AbstractFileProcessor {
                     throw new NoSuchElementException("No more elements in the CSV file");
                 }
                 hasNextCalled = false;
-                return new ArrayList<>(List.of(nextLine));
+                return convertLineToList(nextLine);
+            }
+
+            private void readNextLine() {
+                try {
+                    nextLine = csvReader.readNext();
+                    hasNextCalled = true;
+                } catch (CsvValidationException | IOException e) {
+                    logger.error("Failed to read CSV line", e);
+                    throw new CsvRuntimeException("Failed to read CSV line", e);
+                }
+            }
+
+            private List<String> convertLineToList(String[] line) {
+                List<String> lineAsList = new ArrayList<>();
+                for (String element : line) {
+                    lineAsList.add(element != null ? element : "");
+                }
+                return lineAsList;
             }
         };
     }

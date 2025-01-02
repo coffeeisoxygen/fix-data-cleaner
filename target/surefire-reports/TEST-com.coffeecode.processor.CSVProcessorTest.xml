@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.coffeecode.processor.CSVProcessorTest" time="0.583" tests="4" errors="0" skipped="0" failures="2">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.coffeecode.processor.CSVProcessorTest" time="0.639" tests="4" errors="0" skipped="0" failures="2">
   <properties>
+    <property name="jpda.address" value="60549"/>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="Log4jContextSelector" value="org.apache.logging.log4j.core.async.AsyncLoggerContextSelector"/>
@@ -12,12 +13,13 @@
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Asia/Jakarta"/>
     <property name="user.country.format" value="001"/>
+    <property name="forkMode" value="once"/>
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="23"/>
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="F:\packages\java\OpenJDK-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire16758382880429453142\surefirebooter-20250102145750578_3.jar C:\Users\YOGA\AppData\Local\Temp\surefire16758382880429453142 2025-01-02T14-57-50_467-jvmRun1 surefire-20250102145750578_1tmp surefire_0-20250102145750578_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire2888720256461992216\surefirebooter-20250102151253355_3.jar C:\Users\YOGA\AppData\Local\Temp\surefire2888720256461992216 2025-01-02T15-12-53_217-jvmRun1 surefire-20250102151253355_1tmp surefire_0-20250102151253355_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="com.coffeecode.processor.CSVProcessorTest"/>
     <property name="surefire.test.class.path" value="E:\developement\fix-datacleaner\data-cleaner\target\test-classes;E:\developement\fix-datacleaner\data-cleaner\target\classes;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\YOGA\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\YOGA\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\YOGA\.m2\repository\org\slf4j\slf4j-api\2.0.11\slf4j-api-2.0.11.jar;C:\Users\YOGA\.m2\repository\org\apache\logging\log4j\log4j-slf4j2-impl\2.22.1\log4j-slf4j2-impl-2.22.1.jar;C:\Users\YOGA\.m2\repository\org\apache\logging\log4j\log4j-api\2.22.1\log4j-api-2.22.1.jar;C:\Users\YOGA\.m2\repository\org\apache\logging\log4j\log4j-core\2.22.1\log4j-core-2.22.1.jar;C:\Users\YOGA\.m2\repository\com\lmax\disruptor\3.4.4\disruptor-3.4.4.jar;C:\Users\YOGA\.m2\repository\com\opencsv\opencsv\5.9\opencsv-5.9.jar;C:\Users\YOGA\.m2\repository\org\apache\commons\commons-lang3\3.13.0\commons-lang3-3.13.0.jar;C:\Users\YOGA\.m2\repository\org\apache\commons\commons-text\1.11.0\commons-text-1.11.0.jar;C:\Users\YOGA\.m2\repository\commons-beanutils\commons-beanutils\1.9.4\commons-beanutils-1.9.4.jar;C:\Users\YOGA\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\YOGA\.m2\repository\commons-collections\commons-collections\3.2.2\commons-collections-3.2.2.jar;C:\Users\YOGA\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;"/>
@@ -33,7 +35,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire16758382880429453142\surefirebooter-20250102145750578_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire2888720256461992216\surefirebooter-20250102151253355_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -44,6 +46,7 @@
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="jpda.listen" value="true"/>
     <property name="maven.ext.class.path" value="C:\Users\YOGA\.vscode\extensions\oracle.oracle-java-23.0.1\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\YOGA\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
@@ -61,111 +64,128 @@
     <property name="java.vm.version" value="23+37-2369"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
+    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=60549"/>
   </properties>
-  <testcase name="testMetrics" classname="com.coffeecode.processor.CSVProcessorTest" time="0.524">
-    <system-out><![CDATA[2025-01-02 14:57:51.690 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
-2025-01-02 14:57:51.699 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 1, Memory: 17MB: null
-2025-01-02 14:57:51.699 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 2, Memory: 17MB: null
-2025-01-02 14:57:51.699 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 3, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 4, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 5, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 6, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 7, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 8, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 9, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 10, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 11, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 12, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 13, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 14, Memory: 17MB: null
-2025-01-02 14:57:51.700 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 15, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 16, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 17, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 18, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 19, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 20, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 21, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 22, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 23, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 24, Memory: 17MB: null
-2025-01-02 14:57:51.701 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 25, Memory: 17MB: null
-2025-01-02 14:57:51.702 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 26, Memory: 17MB: null
-2025-01-02 14:57:51.702 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 27, Memory: 17MB: null
-2025-01-02 14:57:51.702 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 28, Memory: 17MB: null
-2025-01-02 14:57:51.702 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 29, Memory: 17MB: null
-2025-01-02 14:57:51.702 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 30, Memory: 17MB: null
-2025-01-02 14:57:51.703 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 31, Memory: 17MB: null
-2025-01-02 14:57:51.703 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 32, Memory: 17MB: null
-2025-01-02 14:57:51.703 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Read File] executed in 12 ms
+  <testcase name="testDataContent" classname="com.coffeecode.processor.CSVProcessorTest" time="0.563">
+    <failure message="Data row should have 31 columns ==&gt; expected: &lt;31&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Data row should have 31 columns ==> expected: <31> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.coffeecode.processor.CSVProcessorTest.testDataContent(CSVProcessorTest.java:67)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+]]></failure>
+    <system-out><![CDATA[2025-01-02 15:12:54.618 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 1, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 2, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 3, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 4, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 5, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 6, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 7, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 8, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 9, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 10, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 11, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 12, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 13, Memory: 16MB: null
+2025-01-02 15:12:54.635 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 14, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 15, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 16, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 17, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 18, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 19, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 20, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 21, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 22, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 23, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 24, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 25, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 26, Memory: 16MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 27, Memory: 17MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 28, Memory: 17MB: null
+2025-01-02 15:12:54.636 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 29, Memory: 17MB: null
+2025-01-02 15:12:54.637 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 30, Memory: 17MB: null
+2025-01-02 15:12:54.637 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 31, Memory: 17MB: null
+2025-01-02 15:12:54.637 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 32, Memory: 17MB: null
+2025-01-02 15:12:54.637 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Read File] executed in 18 ms
 ]]></system-out>
   </testcase>
-  <testcase name="testReadCSV" classname="com.coffeecode.processor.CSVProcessorTest" time="0.018">
-    <failure message="expected: &lt;Transfer Balance Report&gt; but was: &lt;﻿&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <Transfer Balance Report> but was: <﻿>
+  <testcase name="testFileValidation" classname="com.coffeecode.processor.CSVProcessorTest" time="0.003">
+    <system-out><![CDATA[2025-01-02 15:12:54.671 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
+]]></system-out>
+  </testcase>
+  <testcase name="testReadStructure" classname="com.coffeecode.processor.CSVProcessorTest" time="0.029">
+    <failure message="expected: &lt;Transfer Balance Report&gt; but was: &lt;&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <Transfer Balance Report> but was: <>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at com.coffeecode.processor.CSVProcessorTest.testReadCSV(CSVProcessorTest.java:46)
+	at com.coffeecode.processor.CSVProcessorTest.testReadStructure(CSVProcessorTest.java:46)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
 ]]></failure>
-    <system-out><![CDATA[2025-01-02 14:57:51.712 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
-2025-01-02 14:57:51.712 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 1, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 2, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 3, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 4, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 5, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 6, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 7, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 8, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 9, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 10, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 11, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 12, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 13, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 14, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 15, Memory: 18MB: null
-2025-01-02 14:57:51.713 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 16, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 17, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 18, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 19, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 20, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 21, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 22, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 23, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 24, Memory: 18MB: null
-2025-01-02 14:57:51.714 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 25, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 26, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 27, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 28, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 29, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 30, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 31, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 32, Memory: 18MB: null
-2025-01-02 14:57:51.715 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Read File] executed in 3 ms
+    <system-out><![CDATA[2025-01-02 15:12:54.686 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
+2025-01-02 15:12:54.686 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 1, Memory: 18MB: null
+2025-01-02 15:12:54.686 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 2, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 3, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 4, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 5, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 6, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 7, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 8, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 9, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 10, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 11, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 12, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 13, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 14, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 15, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 16, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 17, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 18, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 19, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 20, Memory: 18MB: null
+2025-01-02 15:12:54.687 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 21, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 22, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 23, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 24, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 25, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 26, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 27, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 28, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 29, Memory: 18MB: null
+2025-01-02 15:12:54.688 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 30, Memory: 18MB: null
+2025-01-02 15:12:54.689 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 31, Memory: 18MB: null
+2025-01-02 15:12:54.689 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 32, Memory: 18MB: null
+2025-01-02 15:12:54.690 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Read File] executed in 4 ms
 ]]></system-out>
   </testcase>
-  <testcase name="testIterator" classname="com.coffeecode.processor.CSVProcessorTest" time="0.007">
-    <failure message="expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
-	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
-	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
-	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
-	at com.coffeecode.processor.CSVProcessorTest.testIterator(CSVProcessorTest.java:67)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-]]></failure>
-    <system-out><![CDATA[2025-01-02 14:57:51.737 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
-]]></system-out>
-  </testcase>
-  <testcase name="testValidateFile" classname="com.coffeecode.processor.CSVProcessorTest" time="0.003">
-    <system-out><![CDATA[2025-01-02 14:57:51.744 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
+  <testcase name="testMetrics" classname="com.coffeecode.processor.CSVProcessorTest" time="0.005">
+    <system-out><![CDATA[2025-01-02 15:12:54.707 [main] DEBUG com.coffeecode.processor.CSVProcessor - Task [Validate File] executed in 0 ms
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 1, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 2, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 3, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 4, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 5, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 6, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 7, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 8, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 9, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 10, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 11, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 12, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 13, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 14, Memory: 18MB: null
+2025-01-02 15:12:54.708 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 15, Memory: 18MB: null
+2025-01-02 15:12:54.709 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 16, Memory: 18MB: null
+2025-01-02 15:12:54.709 [main] DEBUG com.coffeecode.processor.CSVProcessor - Performance[PROCESSING] - Rows: 17, Memory: 18MB: null
 ]]></system-out>
   </testcase>
 </testsuite>
